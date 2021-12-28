@@ -23,7 +23,7 @@ FROM php:8.0-alpine as core
         && \
         apk add --no-cache --virtual .phpize-deps $PHPIZE_DEPS $(echo "dHpkYXRhIG5vZGVqcyBucG0gY3VybC1kZXYgbGliemlwLWRldiB6aXAgdW56aXAK" | base64 -d) \
         supervisor \
-        apache2 apache2-utils apache2-ctl php8-apache2 apache2-proxy \
+        apache2 apache2-utils apache2-ctl apache2-proxy php8-apache2 php8-session php8-tokenizer php8-openssl \
         freetype libjpeg-turbo libpng \
         freetype-dev libjpeg-turbo-dev libpng-dev \
         && \
@@ -34,7 +34,7 @@ FROM php:8.0-alpine as core
         && \
         NPROC=$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
         && \
-        docker-php-ext-install -j${NPROC} zip gd curl bcmath pcntl sockets pdo pdo_mysql && pecl install -D 'enable-redis-igbinary="no" enable-redis-lzf="no" enable-redis-zstd="no"' -o -f redis && docker-php-ext-enable redis \
+        docker-php-ext-install -j${NPROC} zip gd curl bcmath pcntl sockets pdo pdo_mysql session tokenizer && pecl install -D 'enable-redis-igbinary="no" enable-redis-lzf="no" enable-redis-zstd="no"' -o -f redis && docker-php-ext-enable redis \
         && \
         apk del --no-cache freetype-dev libjpeg-turbo-dev libpng-dev && rm -rf /tmp/pear/ \
         && \
@@ -50,7 +50,9 @@ FROM php:8.0-alpine as core
         && \
         composer install --no-dev && npm install --production \
         && \
-        php artisan key:generate && npx laravel-echo-server client:add;
+        php artisan key:generate && npx laravel-echo-server client:add \
+        && \
+        chmod -R 777 bootstrap/cache storage;
 
     EXPOSE ${APP_PORT}
 

@@ -13,6 +13,7 @@ class Kernel extends NetKernel
     [
         // \App\Http\Middleware\TrustHosts::class,
         // \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\Maintenance::class,
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\Trimmer::class,
