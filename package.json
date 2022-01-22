@@ -9,6 +9,6 @@
         "production": "mix --production"
     },
 
-    "dependencies": { "laravel-echo-server": "^1.6" },
+    "dependencies": {},
     "devDependencies": { "laravel-mix": "^6.0" }
 }

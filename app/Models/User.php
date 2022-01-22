@@ -23,7 +23,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 
     /**********************************************************************************************************/
 
-        use Authenticatable, Authorizable, HasFactory, SoftDeletes, Notifiable, MustVerifyEmail, CanResetPassword;
+        use Authenticatable, Authorizable, SoftDeletes, Notifiable, MustVerifyEmail, CanResetPassword;
 
         const CREATED_AT = 'created_at';
         const DELETED_AT = 'deleted_at';
@@ -51,27 +51,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     /**
      * @var array
      */
-    protected $fillable = [ 'name', 'email', 'password', ];
+    protected $fillable = [];
 
     /**
      * @var array
      */
-    protected $hidden = [ 'password', 'email_verified_at', ];
-
-    /**
-     * @return string
-     */
-    public function getNameAttribute()
-    {
-        return '@' . $this->attributes['name'];
-    }
-
-    /**
-     * @param string $value
-     * @return void
-     */
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-    }
+    protected $hidden = [];
 }

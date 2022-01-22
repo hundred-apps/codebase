@@ -2,7 +2,7 @@
 
 return [
 
-    'name' => (string) env('APP_NAME', 'laravel'),
+    'name' => (string) env('APP_NAME', 'codebase'),
     'url' => (string) env('APP_URL', 'http://localhost'),
     'asset_url' => (string) env('ASSET_URL', null),
 
