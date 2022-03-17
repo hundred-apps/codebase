@@ -1,14 +1,8 @@
 {
     "private": true,
 
-    "scripts": {
-
-        "watch": "mix watch --hot",
-
-        "development": "mix",
-        "production": "mix --production"
-    },
+    "scripts": {},
 
     "dependencies": {},
-    "devDependencies": { "laravel-mix": "^6.0" }
+    "devDependencies": {}
 }

@@ -1,24 +1,14 @@
 {
     "require": {
 
-        "php": "^7.3|^8.0",
+        "php": "^8.0",
 
-        "laravel/framework": "^8.0",
-        "laravel/legacy-factories": "^1.0",
-
-        "predis/predis": "^1.0",
-        "guzzlehttp/guzzle": "^7.0",
-        "fruitcake/laravel-cors": "^2.0"
+        "togu-inotek/foundation": "^1.0",
+        "togu-inotek/helper": "^1.0",
+        "togu-inotek/repository": "^1.0"
     },
 
-    "require-dev": {
-
-        "laravel/tinker": "^2.0",
-
-        "fakerphp/faker": "^1.9",
-        "mockery/mockery": "^1.3",
-        "phpunit/phpunit": "^9.3"
-    },
+    "require-dev": {},
 
     "autoload": {
 
@@ -38,10 +28,43 @@
         }
     },
 
-    "scripts": { "post-autoload-dump": [ "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump", "@php artisan package:discover --ansi" ] },
+    "scripts": {
 
-    "config": { "preferred-install": "dist", "sort-packages": true, "optimize-autoloader": true },
-    "extra": { "laravel": { "dont-discover": [] } },
+        "pre-update-cmd": [
+
+            "npm install chokidar@3.5.3",
+            "npm install pm2@5.2.0"
+        ],
+
+        "post-update-cmd": [
+
+            "@php artisan vendor:publish --tag=hundredapps-foundation"
+        ],
+
+        "post-autoload-dump": [
+
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ]
+    },
+
+    "extra": {
+
+        "merge-plugin": {
+
+            "include": [
+
+                "vendor/togu-inotek/foundation/composer.json"
+            ]
+        },
+
+        "laravel": {
+
+            "dont-discover": []
+        }
+    },
+
+    "config": { "preferred-install": "dist", "sort-packages": true, "optimize-autoloader": true, "allow-plugins": { "wikimedia/composer-merge-plugin": true } },
     "minimum-stability": "dev",
     "prefer-stable": true
 }

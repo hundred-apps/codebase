@@ -6,6 +6,14 @@ return [
 
     'connections' => [
 
+        'websockets' => [
+
+            'driver' => 'pusher',
+            'app_id' => env('APPWEBSOCKETS_ID'), 'key' => env('APPWEBSOCKETS_KEY'),
+            'secret' => env('APPWEBSOCKETS_SECRET'),
+            'options' => [ 'cluster' => env('APPWEBSOCKETS_CLUSTER'), 'use' . 'TLS' => true, 'scheme' => 'http', 'host' => env('WEBSOCKETS_HOST'), 'port' => env('WEBSOCKETS_PORT'), ],
+        ],
+
         'pusher' => [
 
             'driver' => 'pusher',

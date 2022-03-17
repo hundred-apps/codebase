@@ -31,7 +31,7 @@ return [
 
     'providers' => [
 
-        'eloquent' => [ 'driver' => 'eloquent', 'model' => App\Models\User::class, ],
+        'eloquent' => [ 'driver' => 'eloquent', 'model' => App\Models\V1\User::class, ],
         'database' => [ 'driver' => 'database', 'table' => 'users', ],
     ],
 ];
